@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GFW on Alex Leung</title>
+    <link>https://alexleungch.github.io/tags/gfw/</link>
+    <description>Recent content in GFW on Alex Leung</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch.github.io/tags/gfw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gost - GO Simple Tunnel</title>
+      <link>https://alexleungch.github.io/p/gost/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/p/gost/</guid>
+      <description>特性  多端口监听 可设置转发代理，支持多级转发(代理链) 支持标准HTTP/HTTPS/HTTP2/SOCKS4(A)/SOCKS5代理协议 Web代理支持探测防御 支持多种隧道类型 SOCKS5代理支持TLS协商加密 Tunnel UDP over TCP TCP/UDP透明代理 本地/远程TCP/UDP端口转发 支持Shadowsocks(TCP/UDP)协议 支持SNI代理 权限控制 负载均衡 路由控制 DNS解析和代理 TUN/TAP设备  Wiki站点: https://docs.ginuerzh.xyz/gost/
+Telegram讨论群: https://t.me/gogost
+Google讨论组: https://groups.google.com/d/forum/go-gost
+安装 二进制文件 源码编译 git clone https://github.com/ginuerzh/gost.git cd gost/cmd/gost go build </description>
+    </item>
+    
+  </channel>
+</rss>
