@@ -49,25 +49,7 @@
   
     
       <url>
-            <loc>https://alexleungch-github-io.pages.dev/series/documentation/</loc>
-            <lastmod>2020-08-15T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
             <loc>https://alexleungch-github-io.pages.dev/technology/getting-started/</loc>
-            <lastmod>2020-08-15T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://alexleungch-github-io.pages.dev/series/</loc>
             <lastmod>2020-08-15T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
@@ -110,6 +92,14 @@
     
       <url>
             <loc>https://alexleungch-github-io.pages.dev/news/</loc>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/series/</loc>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
