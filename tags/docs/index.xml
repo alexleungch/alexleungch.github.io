@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docs on Alex Leung</title>
-    <link>https://alexleungch.github.io/tags/docs/</link>
+    <link>https://alexleungch-github-io.pages.dev/tags/docs/</link>
     <description>Recent content in docs on Alex Leung</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch.github.io/tags/docs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch-github-io.pages.dev/tags/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started</title>
-      <link>https://alexleungch.github.io/technology/getting-started/</link>
+      <link>https://alexleungch-github-io.pages.dev/technology/getting-started/</link>
       <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://alexleungch.github.io/technology/getting-started/</guid>
+      <guid>https://alexleungch-github-io.pages.dev/technology/getting-started/</guid>
       <description>This section assumes you have already installed the Blowfish theme.</description>
     </item>
     

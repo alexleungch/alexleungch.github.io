@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Alex Leung</title>
-    <link>https://alexleungch.github.io/blog/</link>
+    <link>https://alexleungch-github-io.pages.dev/blog/</link>
     <description>Recent content in Blog on Alex Leung</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language><atom:link href="https://alexleungch.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-tw</language><atom:link href="https://alexleungch-github-io.pages.dev/blog/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
