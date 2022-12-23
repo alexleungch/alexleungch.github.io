@@ -31,7 +31,52 @@
   
     
       <url>
+            <loc>https://alexleungch-github-io.pages.dev/tags/cockerltd/</loc>
+            <lastmod>2022-12-18T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/series/cockerltd/</loc>
+            <lastmod>2022-12-18T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/cockerltd/</loc>
+            <lastmod>2022-12-18T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
             <loc>https://alexleungch-github-io.pages.dev/blog/hello-world/</loc>
+            <lastmod>2022-12-18T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/cockerltd/itsm/</loc>
+            <lastmod>2022-12-18T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/series/</loc>
             <lastmod>2022-12-18T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
@@ -42,6 +87,15 @@
       <url>
             <loc>https://alexleungch-github-io.pages.dev/tags/</loc>
             <lastmod>2022-12-18T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/series/documentation/</loc>
+            <lastmod>2020-08-15T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -99,14 +153,6 @@
   
     
       <url>
-            <loc>https://alexleungch-github-io.pages.dev/series/</loc>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
             <loc>https://alexleungch-github-io.pages.dev/shingeki/</loc>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
@@ -116,6 +162,14 @@
     
       <url>
             <loc>https://alexleungch-github-io.pages.dev/technology/</loc>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://alexleungch-github-io.pages.dev/cockerltd/</loc>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
