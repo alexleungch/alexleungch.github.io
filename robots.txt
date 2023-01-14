@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://alexleungch-github-io.pages.dev/sitemap.xml

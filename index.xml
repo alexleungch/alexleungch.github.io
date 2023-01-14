@@ -1,31 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Alex Leung</title>
-    <link>https://alexleungch-github-io.pages.dev/</link>
-    <description>Recent content on Alex Leung</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <lastBuildDate>Sun, 18 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch-github-io.pages.dev/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hello World</title>
-      <link>https://alexleungch-github-io.pages.dev/blog/hello-world/</link>
-      <pubDate>Sun, 18 Dec 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://alexleungch-github-io.pages.dev/blog/hello-world/</guid>
-      <description>Hello World!&gt;Hello World! # 敬告所有尤米爾的子民，我的名字是艾連葉卡。正透過始祖巨人的力量與所有尤米爾的子民對話。帕拉迪島上所有用以打造高牆的硬質化已解除，埋藏其中的所有巨人已經開始行動。我的目的是保護我成長的帕拉迪島上的人，但 世界不僅希望消滅帕拉迪島上的人，更渴望將所有尤米爾子民趕盡殺絕。我拒絕接受他們的期望，城牆裡的巨人將會踏遍這座島以外的大地，直到將所有生命都從這世上驅除殆盡。</description>
-      
-    </item>
-    
-    <item>
-      <title>Getting Started</title>
-      <link>https://alexleungch-github-io.pages.dev/technology/getting-started/</link>
-      <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://alexleungch-github-io.pages.dev/technology/getting-started/</guid>
-      <description>This section assumes you have already installed the Blowfish theme.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://alexleungch-github-io.pages.dev/technology/getting-started/featured.png" />
-    </item>
-    
-  </channel>
-</rss>
