@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on 自由の翼</title>
+    <link>https://alexleungch.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on 自由の翼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Fri, 27 Jan 2023 09:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>禁止大陸IP訪問網站</title>
+      <link>https://alexleungch.github.io/post/deny-cnip/</link>
+      <pubDate>Fri, 27 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/post/deny-cnip/</guid>
+      <description>禁止大陸IP訪問網站 首先我們要去獲取到國内的IP地址段， 訪問網站http://www.ip2location.com/free/visitor-blocker
+複製整段程式碼到你的Nginx設定檔裡面即可。</description>
+    </item>
+    
+    <item>
+      <title>vhost.sh:23:pushd:not found</title>
+      <link>https://alexleungch.github.io/post/vhost/</link>
+      <pubDate>Fri, 27 Jan 2023 08:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/post/vhost/</guid>
+      <description>vhost.sh:23:pushd:not found 进入到 oneinstack 目录，执行 vhost 创建命令
+1cd oneinstack 2sh vhost.sh 可能運行用這個命令運行脚本會出錯。
+1vhost.sh: 23: pushd: not found 2... 請使用命令：
+1sudo ./vhost.sh </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自由の翼</title>
+    <link>https://alexleungch.github.io/</link>
+    <description>Recent content on 自由の翼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Fri, 27 Jan 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond -《長城》</title>
+      <link>https://alexleungch.github.io/post/beyond-thegreatwall/</link>
+      <pubDate>Fri, 27 Jan 2023 10:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/post/beyond-thegreatwall/</guid>
+      <description>Beyond -《長城》 作詞：劉卓輝 作曲：黃家駒
+遙遠的東方 遼闊的邊疆 還有遠古的破牆 前世的滄桑 後世的風光 萬里千山牢牢接壤 圍著老去的國度 圍著事實的真相 圍著浩瀚的歲月 圍著欲望與理想 迷信的村莊 神秘的中央 還有昨天的戰場 皇帝的新衣 熱血的纓槍 誰卻甘心流連塞上 圍著老去的國度 圍著事實的真相 圍著浩瀚的歲月 圍著欲望與理想（叫嚷） 矇著耳朵 哪裡哪天不再聽到在呼號的人 WOO-AH AH AH 矇著眼睛 再見往昔景仰的那樣一道疤痕 WOO-AH AH AH 留在地殼頭上 無冕的身軀 忘我的思想 還有顯赫的破牆 誰也衝不開 誰也拋不低 誰要一生流離浪蕩 圍著老去的國度 圍著事實的真相 圍著浩瀚的歲月 圍著欲望與理想（叫嚷） 矇著耳朵 哪裡哪天不再聽到在呼號的人 WOO-AH AH AH 矇著眼睛 再見往昔景仰的那樣一道疤痕 WOO-AH AH AH 留在地殼頭上 矇著耳朵 哪裡哪天不再聽到在呼號的人 WOO-AH AH AH 矇著眼睛 再見往昔景仰的那樣一道疤痕 WOO-AH AH AH 留在地殼頭上</description>
+    </item>
+    
+    <item>
+      <title>禁止大陸IP訪問網站</title>
+      <link>https://alexleungch.github.io/post/deny-cnip/</link>
+      <pubDate>Fri, 27 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/post/deny-cnip/</guid>
+      <description>禁止大陸IP訪問網站 首先我們要去獲取到國内的IP地址段， 訪問網站http://www.ip2location.com/free/visitor-blocker
+複製整段程式碼到你的Nginx設定檔裡面即可。</description>
+    </item>
+    
+    <item>
+      <title>vhost.sh:23:pushd:not found</title>
+      <link>https://alexleungch.github.io/post/vhost/</link>
+      <pubDate>Fri, 27 Jan 2023 08:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/post/vhost/</guid>
+      <description>vhost.sh:23:pushd:not found 进入到 oneinstack 目录，执行 vhost 创建命令
+1cd oneinstack 2sh vhost.sh 可能運行用這個命令運行脚本會出錯。
+1vhost.sh: 23: pushd: not found 2... 請使用命令：
+1sudo ./vhost.sh </description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>https://alexleungch.github.io/post/hello-world/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/post/hello-world/</guid>
+      <description>Hello World 終於有自己的blog啦~
+之前也用選用過很多，還是用回hugo吧，哈哈~ （原因以後得閑再講！）
+以上</description>
+    </item>
+    
+    <item>
+      <title>關於</title>
+      <link>https://alexleungch.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexleungch.github.io/about/</guid>
+      <description>關於 心臓を捧げよ
+趣味でヒーローをやっているものだ
+版本 2023-01-27 Initial Version</description>
+    </item>
+    
+  </channel>
+</rss>
