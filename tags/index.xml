@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 自由の翼</title>
-    <link>https://alexleungch.github.io/tags/</link>
+    <link>https://blog.cocker.lol/tags/</link>
     <description>Recent content in Tags on 自由の翼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Fri, 27 Jan 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://alexleungch.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://blog.cocker.lol/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Music</title>
-      <link>https://alexleungch.github.io/tags/music/</link>
+      <link>https://blog.cocker.lol/tags/music/</link>
       <pubDate>Fri, 27 Jan 2023 10:00:00 +0000</pubDate>
       
-      <guid>https://alexleungch.github.io/tags/music/</guid>
+      <guid>https://blog.cocker.lol/tags/music/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nginx</title>
-      <link>https://alexleungch.github.io/tags/nginx/</link>
+      <link>https://blog.cocker.lol/tags/nginx/</link>
       <pubDate>Fri, 27 Jan 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://alexleungch.github.io/tags/nginx/</guid>
+      <guid>https://blog.cocker.lol/tags/nginx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blog</title>
-      <link>https://alexleungch.github.io/tags/blog/</link>
+      <link>https://blog.cocker.lol/tags/blog/</link>
       <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://alexleungch.github.io/tags/blog/</guid>
+      <guid>https://blog.cocker.lol/tags/blog/</guid>
       <description></description>
     </item>
     
