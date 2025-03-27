@@ -1,13 +1,95 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Starvie Space Shooters</title>
-  </head>
-  <body>
-    <div id="app" />
-    <script src="main.js"></script>
-  </body>
+<html>
+<head>
+    <title>多人语音聊天室</title>
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+</head>
+<body>
+    <div>
+        <input type="text" id="roomId" placeholder="输入房间号">
+        <button onclick="joinRoom()">加入房间</button>
+        <button onclick="leaveRoom()">离开房间</button>
+    </div>
+    <div id="audios"></div>
+
+    <script>
+        let peer = null;
+        let localStream = null;
+        const connections = {};
+        const audioElements = {};
+
+        async function joinRoom() {
+            const roomId = document.getElementById('roomId').value;
+            if (!roomId) return alert('请输入房间号');
+            
+            // 初始化 Peer 实例（连接到自建服务器）
+            peer = new Peer(`${roomId}-${Date.now()}`, {
+                host: 'jp.cockerltd.com',
+                port: 9000,
+                path: '/'
+            });
+
+            // 获取麦克风权限
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            } catch (error) {
+                console.error('无法获取麦克风权限:', error);
+                return alert('需要麦克风权限才能加入聊天');
+            }
+
+            // PeerJS 事件监听
+            peer.on('open', id => {
+                console.log('已连接到 PeerServer，ID:', id);
+                listenToCalls();
+            });
+
+            peer.on('disconnected', () => {
+                console.log('连接断开，尝试重连...');
+                peer.reconnect();
+            });
+        }
+
+        function listenToCalls() {
+            peer.on('call', call => {
+                // 接听来电并发送本地音频流
+                call.answer(localStream);
+                
+                call.on('stream', remoteStream => {
+                    addAudioElement(call.peer, remoteStream);
+                });
+                
+                call.on('close', () => {
+                    removeAudioElement(call.peer);
+                });
+            });
+        }
+
+        function addAudioElement(peerId, stream) {
+            const audio = document.createElement('audio');
+            audio.srcObject = stream;
+            audio.autoplay = true;
+            audioElements[peerId] = audio;
+            document.getElementById('audios').appendChild(audio);
+        }
+
+        function removeAudioElement(peerId) {
+            if (audioElements[peerId]) {
+                audioElements[peerId].remove();
+                delete audioElements[peerId];
+            }
+        }
+
+        function leaveRoom() {
+            if (peer) {
+                peer.destroy();
+                Object.values(connections).forEach(conn => conn.close());
+                Object.keys(audioElements).forEach(removeAudioElement);
+                localStream.getTracks().forEach(track => track.stop());
+                peer = null;
+                localStream = null;
+            }
+        }
+    </script>
+</body>
 </html>
