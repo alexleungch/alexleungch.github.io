@@ -1,61 +1,73 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>RTCMultiConnection 多人聊天室</title>
+  <meta charset="UTF-8">
+  <title>PeerJS 多人聊天室示例</title>
 </head>
 <body>
-    <div id="chat-container">
-        <div id="messages" style="border:1px solid #ccc; height:300px; overflow:auto;"></div>
-        <input type="text" id="message-input" placeholder="输入消息">
-        <button id="send-btn">发送</button>
-    </div>
+  <h1>多人聊天室</h1>
+  <div id="chat"></div>
+  <input type="text" id="msgInput" placeholder="输入消息">
+  <button id="sendBtn">发送</button>
 
-    <!-- 引入 RTCMultiConnection 库 -->
-    <script src="https://cdn.webrtc-experiment.com/RTCMultiConnection.js"></script>
-    <script>
-        // 创建一个连接对象
-        var connection = new RTCMultiConnection();
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.4.7/dist/peerjs.min.js"></script>
+  <script>
+    // 连接到你部署的 PeerJS Server
+    const peer = new Peer({
+      host: 'jp.cockerltd.com',
+      port: 9000,
+      path: '/'
+    });
 
-        // 设置信令服务器地址 (这里可以使用你自己的信令服务器地址)
-        connection.socketURL = 'http://jp.cockerltd.com:9000/';
+    let connections = {};  // 存储所有数据连接
 
-        // 配置只传输数据，不包含音视频
-        connection.session = {
-            data: true
-        };
+    peer.on('open', id => {
+      console.log('我的 PeerID：', id);
+      // 加入房间的逻辑：通常通过一个房间管理服务器通知其他用户
+      // 示例：假设已经获取了房间内其他用户的 peerId 列表 peersList
+      // 这里直接模拟一个已知列表
+      let peersList = ['peerID1', 'peerID2'];  // 注意：不要包含自己的 id
+      peersList.forEach(peerId => {
+        if (peerId !== id) {
+          let conn = peer.connect(peerId);
+          conn.on('open', () => {
+            console.log('连接到：', peerId);
+            connections[peerId] = conn;
+          });
+          conn.on('data', data => {
+            addMessage(`来自 ${peerId}: ${data}`);
+          });
+        }
+      });
+    });
 
-        // 设置房间标识符
-        var roomId = 'my-chat-room';
-        connection.channel = roomId;
+    // 当有其他用户主动连接进来
+    peer.on('connection', conn => {
+      conn.on('open', () => {
+        console.log('收到来自新连接：', conn.peer);
+        connections[conn.peer] = conn;
+      });
+      conn.on('data', data => {
+        addMessage(`来自 ${conn.peer}: ${data}`);
+      });
+    });
 
-        // 接收消息事件
-        connection.onmessage = function(event) {
-            var msg = document.createElement('div');
-            msg.textContent = '收到消息：' + event.data;
-            document.getElementById('messages').appendChild(msg);
-        };
+    // 发送消息
+    document.getElementById('sendBtn').addEventListener('click', () => {
+      const message = document.getElementById('msgInput').value;
+      for (let peerId in connections) {
+        connections[peerId].send(message);
+      }
+      addMessage(`我：${message}`);
+      document.getElementById('msgInput').value = '';
+    });
 
-        // 打开房间：如果你希望自己成为房主，可以使用 open，
-        // 其他用户则使用 join 加入同一房间
-        // 例如：connection.open(roomId);
-        // 如果你希望所有人都可以同时创建或加入，则可以使用：
-        connection.openOrJoin(roomId);
-
-        // 发送消息的逻辑
-        document.getElementById('send-btn').addEventListener('click', function() {
-            var message = document.getElementById('message-input').value;
-            if(message) {
-                // 通过数据通道发送消息
-                connection.send(message);
-
-                // 显示自己发送的消息
-                var msg = document.createElement('div');
-                msg.textContent = '你：' + message;
-                document.getElementById('messages').appendChild(msg);
-                document.getElementById('message-input').value = '';
-            }
-        });
-    </script>
+    function addMessage(msg) {
+      const chatDiv = document.getElementById('chat');
+      const p = document.createElement('p');
+      p.textContent = msg;
+      chatDiv.appendChild(p);
+    }
+  </script>
 </body>
 </html>
