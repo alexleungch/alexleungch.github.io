@@ -1,98 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>多人语音聊天室</title>
-  <style>
-    body { font-family: Arial, sans-serif; }
-    audio { display: block; margin: 5px 0; }
-  </style>
+    <meta charset="UTF-8">
+    <title>RTCMultiConnection 多人聊天室</title>
 </head>
 <body>
-  <h1>多人语音聊天室</h1>
-  <div>我的ID：<span id="my-id"></span></div>
-  <div id="remote-audios"></div>
-  
-  <!-- 引入 PeerJS 库 -->
-  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.3.1/dist/peerjs.min.js"></script>
-  <script>
-    let peer = null;
-    let localStream = null;
-    // 保存已建立连接的 call 对象，防止重复呼叫
-    const peers = {};
+    <div id="chat-container">
+        <div id="messages" style="border:1px solid #ccc; height:300px; overflow:auto;"></div>
+        <input type="text" id="message-input" placeholder="输入消息">
+        <button id="send-btn">发送</button>
+    </div>
 
-    // 获取音频流（仅音频）
-    navigator.mediaDevices.getUserMedia({audio: true})
-      .then(stream => {
-        localStream = stream;
-        // 播放本地音频（静音防止回音）
-        const localAudio = document.createElement('audio');
-        localAudio.srcObject = stream;
-        localAudio.muted = true;
-        localAudio.play();
-        
-        // 创建 Peer 连接（此处用 null 自动生成 id，可自行指定）
-        peer = new Peer(null, {
-          // 注意：将下面的配置替换为你自己搭建的 PeerServer 地址
-          host: 'jp.cockerltd.com', 
-          port: 9000,                    
-          path: '/'
-        });
-        
-        // 连接成功后显示自己的 peer id
-        peer.on('open', id => {
-          document.getElementById('my-id').textContent = id;
-          console.log('My peer ID is: ' + id);
-          // 获取所有在线 peer 并呼叫他们（注意：此方法需要 PeerServer 支持 listAllPeers）
-          peer.listAllPeers(list => {
-            list.forEach(peerId => {
-              if (peerId !== id && !peers[peerId]) {
-                callPeer(peerId);
-              }
-            });
-          });
-        });
+    <!-- 引入 RTCMultiConnection 库 -->
+    <script src="https://cdn.webrtc-experiment.com/RTCMultiConnection.js"></script>
+    <script>
+        // 创建一个连接对象
+        var connection = new RTCMultiConnection();
 
-        // 当接收到别人发起的呼叫时，自动回答并建立连接
-        peer.on('call', call => {
-          call.answer(localStream);
-          setupCall(call);
+        // 设置信令服务器地址 (这里可以使用你自己的信令服务器地址)
+        connection.socketURL = 'http://jp.cockerltd.com:9000/';
+
+        // 配置只传输数据，不包含音视频
+        connection.session = {
+            data: true
+        };
+
+        // 设置房间标识符
+        var roomId = 'my-chat-room';
+        connection.channel = roomId;
+
+        // 接收消息事件
+        connection.onmessage = function(event) {
+            var msg = document.createElement('div');
+            msg.textContent = '收到消息：' + event.data;
+            document.getElementById('messages').appendChild(msg);
+        };
+
+        // 打开房间：如果你希望自己成为房主，可以使用 open，
+        // 其他用户则使用 join 加入同一房间
+        // 例如：connection.open(roomId);
+        // 如果你希望所有人都可以同时创建或加入，则可以使用：
+        connection.openOrJoin(roomId);
+
+        // 发送消息的逻辑
+        document.getElementById('send-btn').addEventListener('click', function() {
+            var message = document.getElementById('message-input').value;
+            if(message) {
+                // 通过数据通道发送消息
+                connection.send(message);
+
+                // 显示自己发送的消息
+                var msg = document.createElement('div');
+                msg.textContent = '你：' + message;
+                document.getElementById('messages').appendChild(msg);
+                document.getElementById('message-input').value = '';
+            }
         });
-        
-        // 如果需要数据通道传递额外信息，可监听 connection 事件
-        peer.on('connection', conn => {
-          conn.on('data', data => {
-            console.log('接收到数据：', data);
-          });
-        });
-      })
-      .catch(err => {
-        console.error('获取音频流失败：', err);
-      });
-      
-    // 主动呼叫其他 peer
-    function callPeer(peerId) {
-      const call = peer.call(peerId, localStream);
-      setupCall(call);
-    }
-    
-    // 统一处理呼叫事件：当收到对方音频流时添加到页面中，关闭时移除
-    function setupCall(call) {
-      call.on('stream', remoteStream => {
-        if (!document.getElementById('audio-' + call.peer)) {
-          const audioElement = document.createElement('audio');
-          audioElement.id = 'audio-' + call.peer;
-          audioElement.srcObject = remoteStream;
-          audioElement.autoplay = true;
-          document.getElementById('remote-audios').appendChild(audioElement);
-        }
-      });
-      call.on('close', () => {
-        const audioElement = document.getElementById('audio-' + call.peer);
-        if (audioElement) audioElement.remove();
-      });
-      peers[call.peer] = call;
-    }
-  </script>
+    </script>
 </body>
 </html>
