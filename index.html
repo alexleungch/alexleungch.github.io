@@ -1,95 +1,98 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>多人语音聊天室</title>
-    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <meta charset="UTF-8">
+  <title>多人语音聊天室</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    audio { display: block; margin: 5px 0; }
+  </style>
 </head>
 <body>
-    <div>
-        <input type="text" id="roomId" placeholder="输入房间号">
-        <button onclick="joinRoom()">加入房间</button>
-        <button onclick="leaveRoom()">离开房间</button>
-    </div>
-    <div id="audios"></div>
+  <h1>多人语音聊天室</h1>
+  <div>我的ID：<span id="my-id"></span></div>
+  <div id="remote-audios"></div>
+  
+  <!-- 引入 PeerJS 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.3.1/dist/peerjs.min.js"></script>
+  <script>
+    let peer = null;
+    let localStream = null;
+    // 保存已建立连接的 call 对象，防止重复呼叫
+    const peers = {};
 
-    <script>
-        let peer = null;
-        let localStream = null;
-        const connections = {};
-        const audioElements = {};
-
-        async function joinRoom() {
-            const roomId = document.getElementById('roomId').value;
-            if (!roomId) return alert('请输入房间号');
-            
-            // 初始化 Peer 实例（连接到自建服务器）
-            peer = new Peer(`${roomId}-${Date.now()}`, {
-                host: 'jp.cockerltd.com',
-                port: 9000,
-                path: '/'
+    // 获取音频流（仅音频）
+    navigator.mediaDevices.getUserMedia({audio: true})
+      .then(stream => {
+        localStream = stream;
+        // 播放本地音频（静音防止回音）
+        const localAudio = document.createElement('audio');
+        localAudio.srcObject = stream;
+        localAudio.muted = true;
+        localAudio.play();
+        
+        // 创建 Peer 连接（此处用 null 自动生成 id，可自行指定）
+        peer = new Peer(null, {
+          // 注意：将下面的配置替换为你自己搭建的 PeerServer 地址
+          host: 'jp.cockerltd.com', 
+          port: 9000,                    
+          path: '/'
+        });
+        
+        // 连接成功后显示自己的 peer id
+        peer.on('open', id => {
+          document.getElementById('my-id').textContent = id;
+          console.log('My peer ID is: ' + id);
+          // 获取所有在线 peer 并呼叫他们（注意：此方法需要 PeerServer 支持 listAllPeers）
+          peer.listAllPeers(list => {
+            list.forEach(peerId => {
+              if (peerId !== id && !peers[peerId]) {
+                callPeer(peerId);
+              }
             });
+          });
+        });
 
-            // 获取麦克风权限
-            try {
-                localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            } catch (error) {
-                console.error('无法获取麦克风权限:', error);
-                return alert('需要麦克风权限才能加入聊天');
-            }
-
-            // PeerJS 事件监听
-            peer.on('open', id => {
-                console.log('已连接到 PeerServer，ID:', id);
-                listenToCalls();
-            });
-
-            peer.on('disconnected', () => {
-                console.log('连接断开，尝试重连...');
-                peer.reconnect();
-            });
+        // 当接收到别人发起的呼叫时，自动回答并建立连接
+        peer.on('call', call => {
+          call.answer(localStream);
+          setupCall(call);
+        });
+        
+        // 如果需要数据通道传递额外信息，可监听 connection 事件
+        peer.on('connection', conn => {
+          conn.on('data', data => {
+            console.log('接收到数据：', data);
+          });
+        });
+      })
+      .catch(err => {
+        console.error('获取音频流失败：', err);
+      });
+      
+    // 主动呼叫其他 peer
+    function callPeer(peerId) {
+      const call = peer.call(peerId, localStream);
+      setupCall(call);
+    }
+    
+    // 统一处理呼叫事件：当收到对方音频流时添加到页面中，关闭时移除
+    function setupCall(call) {
+      call.on('stream', remoteStream => {
+        if (!document.getElementById('audio-' + call.peer)) {
+          const audioElement = document.createElement('audio');
+          audioElement.id = 'audio-' + call.peer;
+          audioElement.srcObject = remoteStream;
+          audioElement.autoplay = true;
+          document.getElementById('remote-audios').appendChild(audioElement);
         }
-
-        function listenToCalls() {
-            peer.on('call', call => {
-                // 接听来电并发送本地音频流
-                call.answer(localStream);
-                
-                call.on('stream', remoteStream => {
-                    addAudioElement(call.peer, remoteStream);
-                });
-                
-                call.on('close', () => {
-                    removeAudioElement(call.peer);
-                });
-            });
-        }
-
-        function addAudioElement(peerId, stream) {
-            const audio = document.createElement('audio');
-            audio.srcObject = stream;
-            audio.autoplay = true;
-            audioElements[peerId] = audio;
-            document.getElementById('audios').appendChild(audio);
-        }
-
-        function removeAudioElement(peerId) {
-            if (audioElements[peerId]) {
-                audioElements[peerId].remove();
-                delete audioElements[peerId];
-            }
-        }
-
-        function leaveRoom() {
-            if (peer) {
-                peer.destroy();
-                Object.values(connections).forEach(conn => conn.close());
-                Object.keys(audioElements).forEach(removeAudioElement);
-                localStream.getTracks().forEach(track => track.stop());
-                peer = null;
-                localStream = null;
-            }
-        }
-    </script>
+      });
+      call.on('close', () => {
+        const audioElement = document.getElementById('audio-' + call.peer);
+        if (audioElement) audioElement.remove();
+      });
+      peers[call.peer] = call;
+    }
+  </script>
 </body>
 </html>
